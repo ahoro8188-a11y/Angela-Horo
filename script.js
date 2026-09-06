@@ -55,3 +55,39 @@
     if (window.innerWidth > 860) closeNav();
   });
 })();
+
+(function () {
+  // Progressive enhancement only: elements are visible by default
+  // (see CSS). JS marks them pre-reveal (hidden) and immediately
+  // observes them so they animate in — but if anything here fails,
+  // the CSS default keeps everything visible regardless.
+  if (!('IntersectionObserver' in window)) return;
+
+  try {
+    var targets = document.querySelectorAll('.reveal');
+    if (!targets.length) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('pre-reveal');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    targets.forEach(function (el) {
+      el.classList.add('pre-reveal');
+      observer.observe(el);
+    });
+
+    // Safety net in case an observed element never intersects for
+    // some reason (e.g. zero-height section) — never leave it hidden.
+    setTimeout(function () {
+      targets.forEach(function (el) { el.classList.remove('pre-reveal'); });
+    }, 4000);
+  } catch (e) {
+    // If anything above throws, do nothing further — CSS default
+    // (fully visible, no pre-reveal class applied) already holds.
+  }
+})();
