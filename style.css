@@ -27,6 +27,38 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
+/* ---------- Splash screen ---------- */
+.splash{
+  position:fixed;top:0;right:0;bottom:0;left:0;z-index:999;
+  background:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .6s ease, visibility .6s ease;
+  animation:splash-autohide .6s ease 2.5s forwards;
+}
+@keyframes splash-autohide{
+  to{opacity:0;visibility:hidden;}
+}
+.splash span{
+  font-family:'Fraunces',serif;font-weight:600;
+  font-size:clamp(48px, 15vw, 96px);
+  color:var(--cream);letter-spacing:.02em;
+}
+.splash.hide{opacity:0;visibility:hidden;pointer-events:none;}
+@media (prefers-reduced-motion: reduce){
+  .splash{animation:none;opacity:0;visibility:hidden;}
+}
+
+/* ---------- Smooth transitions, global ---------- */
+a, .btn, .nav-toggle span, .bring-card, .cert-card, .proj-card, .exp-item{
+  transition:background-color .2s ease, color .2s ease, border-color .2s ease,
+             transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+}
+.btn:hover{transform:translateY(-1px);}
+.bring-card:hover, .cert-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(30,51,70,.08);}
+@media (prefers-reduced-motion: reduce){
+  a, .btn, .bring-card, .cert-card, .proj-card{transition:none;}
+}
+
 h1,h2,h3{
   font-family:'Fraunces',serif;
   font-weight:600;
@@ -60,6 +92,38 @@ img{max-width:100%;display:block;}
   padding-bottom:2px;
 }
 .topnav nav a:hover, .topnav nav a.active{color:var(--navy);border-color:var(--blue-deep);}
+
+.nav-toggle{
+  display:none;
+  flex-direction:column;justify-content:center;gap:5px;
+  width:34px;height:34px;padding:0;background:none;border:none;cursor:pointer;
+}
+.nav-toggle span{
+  display:block;height:2px;width:100%;background:var(--navy);border-radius:2px;
+  transition:transform .2s ease, opacity .2s ease;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* ---------- Hero load-in (one orchestrated moment) ---------- */
+.hero > div:first-child > *{
+  opacity:0;transform:translateY(10px);
+  animation:hero-in .6s ease forwards;
+}
+.hero .role{animation-delay:.05s;}
+.hero h1{animation-delay:.12s;}
+.hero .subhead{animation-delay:.2s;}
+.hero .btn-row{animation-delay:.28s;}
+.hero-photo{
+  opacity:0;animation:hero-in .7s ease forwards;animation-delay:.15s;
+}
+@keyframes hero-in{
+  to{opacity:1;transform:translateY(0);}
+}
+@media (prefers-reduced-motion: reduce){
+  .hero > div:first-child > *, .hero-photo{animation:none;opacity:1;transform:none;}
+}
 
 /* ---------- Buttons ---------- */
 .btn{
@@ -151,6 +215,34 @@ img{max-width:100%;display:block;}
 .bring-card h3{font-size:18px;margin-bottom:10px;}
 .bring-card p{font-size:14.5px;color:var(--ink-soft);margin:0;}
 
+/* ---------- Quote ---------- */
+.quote-band{
+  background:var(--navy);padding:64px 0;margin:0;
+  text-align:center;position:relative;
+}
+.quote-band .wrap{max-width:760px;}
+.quote-band .quote-mark{
+  display:block;font-family:'Fraunces',serif;font-size:64px;line-height:1;
+  color:var(--blue);opacity:.7;margin-bottom:4px;
+}
+.quote-band blockquote{
+  margin:0;font-family:'Fraunces',serif;font-style:italic;font-weight:500;
+  font-size:30px;line-height:1.45;color:var(--cream);
+}
+@media (max-width:600px){
+  .quote-band blockquote{font-size:22px;}
+}
+
+/* ---------- Skills ---------- */
+.skills{padding:20px 0 88px;}
+.skill-list{margin-bottom:26px;}
+.skill-list:last-child{margin-bottom:0;}
+.skill-list-label{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--blue-deep);
+  text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px;
+}
+.skill-line{font-size:16px;color:var(--ink-soft);margin:0;max-width:70ch;line-height:1.7;}
+
 /* ---------- Experience ---------- */
 .exp{padding:20px 0 88px;}
 .exp-item{
@@ -206,6 +298,42 @@ img{max-width:100%;display:block;}
 .proj-card.pending{opacity:.55;}
 .proj-card.pending .btn{pointer-events:none;}
 
+.proj-toggle{align-self:flex-start;}
+.proj-toggle[aria-expanded="true"]::after{content:" ↑";}
+.proj-toggle[aria-expanded="false"]::after{content:" ↓";}
+.proj-detail{
+  margin-top:18px;padding-top:18px;border-top:1px solid var(--line);
+}
+.proj-detail p{font-size:14px;color:var(--ink-soft);margin:0 0 12px;}
+.proj-detail .btn{margin-top:6px;}
+
+/* ---------- Detail pages (GHRM, Competency Multiverse) ---------- */
+.proj-head a{font-size:13.5px;color:var(--blue-deep);text-decoration:none;}
+.detail-page{padding-bottom:80px;max-width:760px;}
+.detail-page h2{font-size:22px;margin:44px 0 14px;}
+.detail-page h2:first-child{margin-top:0;}
+.detail-page p{font-size:15.5px;color:var(--ink-soft);margin:0 0 14px;}
+.detail-page ul{margin:0 0 14px;padding-left:20px;}
+.detail-page li{font-size:15.5px;color:var(--ink-soft);margin-bottom:8px;}
+.detail-page li strong{color:var(--navy);}
+
+.scorecard{
+  background:var(--paper);border:1px solid var(--line);border-radius:6px;
+  padding:22px 26px;margin:8px 0 32px;max-width:420px;
+}
+.scorecard-title{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--blue-deep);
+  margin-bottom:14px;text-transform:uppercase;letter-spacing:.03em;
+}
+.score-row{
+  display:flex;justify-content:space-between;font-size:14.5px;
+  padding:8px 0;border-top:1px solid var(--line);color:var(--ink-soft);
+}
+.score-row:first-of-type{border-top:none;}
+.score-total{
+  font-weight:600;color:var(--navy);border-top:1px solid var(--navy);margin-top:4px;
+}
+
 /* ---------- Footer ---------- */
 footer{background:var(--navy);color:var(--cream);padding:64px 0 40px;margin-top:40px;}
 footer h2{color:var(--cream);font-size:26px;}
@@ -220,6 +348,16 @@ footer h2{color:var(--cream);font-size:26px;}
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
 }
 
+/* ---------- Scroll reveal ---------- */
+/* Visible by default — JS only adds the entrance animation as a
+   progressive enhancement. If JS fails or is blocked, content is
+   simply static, never invisible. */
+.reveal.pre-reveal{opacity:0;transform:translateY(18px);}
+.reveal{transition:opacity .7s ease, transform .7s ease;}
+@media (prefers-reduced-motion: reduce){
+  .reveal.pre-reveal{opacity:1;transform:none;}
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 860px){
   .hero{flex-direction:column;gap:40px;}
@@ -231,5 +369,15 @@ footer h2{color:var(--cream);font-size:26px;}
   .cert-row .cert-card{min-width:150px;}
   .proj-grid .proj-card{flex:1 1 100%;}
   .exp-item{flex-direction:column;gap:6px;}
-  .topnav nav a{margin-left:16px;}
+
+  .nav-toggle{display:flex;}
+  .topnav nav{
+    display:none;
+    position:absolute;left:0;right:0;top:100%;
+    background:var(--paper);border-top:1px solid var(--line);
+    flex-direction:column;padding:8px 32px 18px;
+  }
+  .topnav nav.open{display:flex;}
+  .topnav nav a{margin-left:0;padding:12px 0;border-bottom:1px solid var(--line);}
+  .topnav{position:relative;}
 }
