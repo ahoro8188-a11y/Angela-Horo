@@ -10,7 +10,10 @@
 
 <div class="wrap topnav">
   <a class="mark" href="index.html">Angela Horo</a>
-  <nav>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="primaryNav">
     <a href="index.html">Home</a>
     <a href="projects.html" class="active">Projects</a>
     <a href="index.html#contact">Contact</a>
@@ -28,35 +31,51 @@
     <span class="proj-tag">Live demo</span>
     <h3>NCWA — Employee Welfare &amp; Compensation Analytics</h3>
     <p>Built during my internship at Central Coalfields Limited. Evaluated National Coal Wage Agreement provisions and ran Chi-square analysis on a 30-item survey to assess satisfaction with welfare benefits and organisational communication across a unionised workforce.</p>
-    <a class="btn btn-primary" href="ncwa-dashboard.html" target="_blank" rel="noopener">Open Dashboard ↗</a>
+    <a class="btn btn-primary" href="https://ahoro8188-a11y.github.io/ncwa/" target="_blank" rel="noopener">Open Dashboard ↗</a>
   </div>
 
   <div class="proj-card">
     <span class="proj-tag">Power BI</span>
     <h3>HR Analytics Dashboard</h3>
     <p>Engineered a Power BI interface integrating 50,000+ employee records to streamline headcount tracking, workforce demographics, and reduce manual reporting time.</p>
-    <a class="btn btn-ghost" href="mailto:horoang4@gmail.com?subject=HR%20Analytics%20Dashboard%20-%20.pbix%20file">Request .pbix file</a>
+    <button class="btn btn-ghost proj-toggle" aria-expanded="false" aria-controls="detail-dashboard">Know more</button>
+    <div class="proj-detail" id="detail-dashboard" hidden>
+      <p>Built end-to-end in Power BI on a 50,000+ record employee dataset, this dashboard replaced a set of manual, spreadsheet-based reports that HR pulled together each cycle.</p>
+      <p>It tracks headcount by department and grade, workforce demographics, and attrition trends, with interactive filters so stakeholders can self-serve answers instead of requesting a fresh report each time.</p>
+      <p>The result: recurring reporting work that used to take hours became a live, always-current view — freeing up time for analysis instead of data assembly.</p>
+      <a class="btn btn-ghost" href="mailto:horoang4@gmail.com?subject=HR%20Analytics%20Dashboard%20-%20.pbix%20file">Request .pbix file →</a>
+    </div>
   </div>
 
   <div class="proj-card">
     <span class="proj-tag">Academic project</span>
-    <h3>Assessment Centre Simulation</h3>
-    <p>Designed 5 workplace scenarios and competency rubrics to evaluate HR students' professional performance through structured role-plays, applying performance-evaluation frameworks used in workplace assessment centres.</p>
-    <a class="btn btn-ghost" href="mailto:horoang4@gmail.com?subject=Assessment%20Centre%20Simulation">Ask about this project</a>
+    <h3>The Competency Multiverse — Assessment Centre Simulation</h3>
+    <p>Designed a classroom-based assessment centre with 5 workplace role-play scenarios and a common 25-mark rubric, to observe and evaluate individual competencies independent of group performance.</p>
+    <button class="btn btn-ghost proj-toggle" aria-expanded="false" aria-controls="detail-assessment">Know more</button>
+    <div class="proj-detail" id="detail-assessment" hidden>
+      <p>Teams of 5 drew one of five scenarios ("universes") — a workplace conflict, a business turnaround problem, competing urgent priorities, a repeated communication failure, and a resource-constrained ethical dilemma — then had 3 minutes to prepare and 5 minutes to role-play it live.</p>
+      <p>Every participant was scored individually against five competencies (Communication, Decision-making, Problem-solving, Leadership &amp; Teamwork, Adaptability under pressure), 5 marks each, using a shared behaviour-based rubric rather than subjective impressions.</p>
+      <p>The rubric was deliberately designed to counter common assessment biases — the loudest person in the room isn't automatically the best performer, and every score had to be backed by observed behaviour, not confidence or fluency.</p>
+    </div>
   </div>
 
   <div class="proj-card">
     <span class="proj-tag">Research</span>
-    <h3>Sustainability in HR</h3>
-    <p>Synthesised 50 academic journals via thematic analysis to identify the drivers of engagement and operational efficiency in sustainable firms.</p>
-    <a class="btn btn-ghost" href="mailto:horoang4@gmail.com?subject=Sustainability%20in%20HR%20project">Ask about this project</a>
+    <h3>Beyond the Green Label: GHRM &amp; Corporate Greenwashing</h3>
+    <p>Synthesised 50 academic journals via thematic analysis to examine whether Green Human Resource Management practices drive authentic sustainability outcomes — or become a mechanism for symbolic greenwashing.</p>
+    <button class="btn btn-ghost proj-toggle" aria-expanded="false" aria-controls="detail-ghrm">Know more</button>
+    <div class="proj-detail" id="detail-ghrm" hidden>
+      <p>Most GHRM literature assumes that green HR practices — recruitment, training, performance management, and rewards aligned with ecological goals — automatically produce genuine environmental outcomes. This research questioned that assumption.</p>
+      <p>By synthesising existing studies, the paper examines the conditions that separate authentic sustainability from surface-level "greenwashing" — namely leadership authenticity, how deeply green practices are integrated into HR systems (versus copied from external programmes), and genuine employee empowerment rather than image-driven policy.</p>
+      <p>The conclusion: HR isn't a neutral implementer of sustainability policy — it's a decisive actor whose depth of involvement determines whether a company's environmental narrative reflects real change or a well-branded facade.</p>
+    </div>
   </div>
 
-  <div class="proj-card pending">
-    <span class="proj-tag">Coming soon</span>
-    <h3>HR Internship — Cube</h3>
-    <p>Recruitment workflow project from my internship at Cube, covering candidate screening and shortlist generation. Write-up in progress.</p>
-    <a class="btn btn-ghost" href="#">Coming soon</a>
+  <div class="proj-card">
+    <span class="proj-tag">Live demo</span>
+    <h3>Recruitment Funnel Analytics — Cube</h3>
+    <p>Analysed the candidate funnel for a Graphic &amp; Motion Designer role during my internship at Cube (Intour Labs) — mapping where sourced candidates dropped off across outreach, response, and follow-through, and comparing conversion rates by recruiter.</p>
+    <a class="btn btn-primary" href="https://ahoro8188-a11y.github.io/cube-dashboard/" target="_blank" rel="noopener">Open Dashboard ↗</a>
   </div>
 
 </section>
@@ -77,5 +96,6 @@
   </div>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>
