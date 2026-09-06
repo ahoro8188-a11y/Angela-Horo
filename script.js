@@ -1,366 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+// Angela Horo — HR Portfolio
+// Handles the mobile nav toggle. That's it — the hero's entrance
+// and the marquee scroll are both pure CSS, no JS needed for those.
 
-:root{
-  --cream:#F1EADC;
-  --paper:#FBF8F1;
-  --navy:#1E3346;
-  --navy-2:#152634;
-  --blue:#5C82A0;
-  --blue-deep:#3E6A88;
-  --powder:#D2E2E8;
-  --ink:#23262B;
-  --ink-soft:#4A5158;
-  --line: rgba(30,51,70,.16);
-  --radius: 4px;
-  --wrap: 1100px;
-}
-
-*{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-  margin:0;
-  background:var(--cream);
-  color:var(--ink);
-  font-family:'IBM Plex Sans',sans-serif;
-  font-size:16px;
-  line-height:1.55;
-  -webkit-font-smoothing:antialiased;
-}
-
-/* ---------- Splash screen ---------- */
-.splash{
-  position:fixed;top:0;right:0;bottom:0;left:0;z-index:999;
-  background:var(--navy);
-  display:flex;align-items:center;justify-content:center;
-  transition:opacity .6s ease, visibility .6s ease;
-}
-.splash span{
-  font-family:'Fraunces',serif;font-weight:600;
-  font-size:clamp(48px, 15vw, 96px);
-  color:var(--cream);letter-spacing:.02em;
-}
-.splash.hide{opacity:0;visibility:hidden;pointer-events:none;}
-
-/* ---------- Smooth transitions, global ---------- */
-a, .btn, .nav-toggle span, .bring-card, .cert-card, .skill-tags span, .proj-card, .exp-item{
-  transition:background-color .2s ease, color .2s ease, border-color .2s ease,
-             transform .2s ease, box-shadow .2s ease, opacity .2s ease;
-}
-.btn:hover{transform:translateY(-1px);}
-.bring-card:hover, .cert-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(30,51,70,.08);}
-.skill-tags span:hover{background:var(--powder);border-color:var(--blue-deep);}
-@media (prefers-reduced-motion: reduce){
-  a, .btn, .bring-card, .cert-card, .skill-tags span, .proj-card{transition:none;}
-}
-
-h1,h2,h3{
-  font-family:'Fraunces',serif;
-  font-weight:600;
-  color:var(--navy);
-  margin:0;
-  letter-spacing:-.01em;
-}
-
-a{color:var(--blue-deep);}
-a:focus-visible, button:focus-visible{
-  outline:2px solid var(--blue-deep);
-  outline-offset:3px;
-}
-
-img{max-width:100%;display:block;}
-
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 32px;}
-
-/* ---------- Top nav ---------- */
-.topnav{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:26px 0;
-}
-.topnav .mark{
-  font-family:'Fraunces',serif;font-weight:600;font-size:19px;color:var(--navy);
-  text-decoration:none;
-}
-.topnav nav a{
-  font-size:14.5px;color:var(--ink-soft);text-decoration:none;margin-left:28px;
-  border-bottom:1px solid transparent;
-  padding-bottom:2px;
-}
-.topnav nav a:hover, .topnav nav a.active{color:var(--navy);border-color:var(--blue-deep);}
-
-.nav-toggle{
-  display:none;
-  flex-direction:column;justify-content:center;gap:5px;
-  width:34px;height:34px;padding:0;background:none;border:none;cursor:pointer;
-}
-.nav-toggle span{
-  display:block;height:2px;width:100%;background:var(--navy);border-radius:2px;
-  transition:transform .2s ease, opacity .2s ease;
-}
-.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
-.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-
-/* ---------- Hero load-in (one orchestrated moment) ---------- */
-.hero > div:first-child > *{
-  opacity:0;transform:translateY(10px);
-  animation:hero-in .6s ease forwards;
-}
-.hero .role{animation-delay:.05s;}
-.hero h1{animation-delay:.12s;}
-.hero .subhead{animation-delay:.2s;}
-.hero .btn-row{animation-delay:.28s;}
-.hero-photo{
-  opacity:0;animation:hero-in .7s ease forwards;animation-delay:.15s;
-}
-@keyframes hero-in{
-  to{opacity:1;transform:translateY(0);}
-}
-@media (prefers-reduced-motion: reduce){
-  .hero > div:first-child > *, .hero-photo{animation:none;opacity:1;transform:none;}
-}
-
-/* ---------- Buttons ---------- */
-.btn{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14.5px;
-  padding:13px 24px;border-radius:999px;text-decoration:none;
-  border:1px solid transparent;cursor:pointer;
-}
-.btn-primary{background:var(--navy);color:var(--cream);}
-.btn-primary:hover{background:var(--navy-2);}
-.btn-ghost{background:transparent;color:var(--navy);border-color:var(--navy);}
-.btn-ghost:hover{background:var(--navy);color:var(--cream);}
-.btn-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;}
-
-/* ---------- Hero ---------- */
-.hero{
-  display:flex;gap:56px;
-  align-items:center;
-  padding:36px 0 72px;
-}
-.hero > div:first-child{flex:1.15;}
-.hero-photo{flex:.85;}
-.hero h1{font-size:56px;line-height:1.06;}
-.hero .subhead{
-  margin-top:22px;max-width:46ch;font-size:17.5px;color:var(--ink-soft);
-}
-.hero .role{
-  font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--blue-deep);
-  letter-spacing:.02em;margin-bottom:16px;
-}
-.hero-photo{
-  position:relative;
-}
-.hero-photo img{
-  border-radius:6px;
-  width:100%;height:460px;object-fit:cover;object-position:top center;
-}
-.hero-photo .tag{
-  position:absolute;bottom:-18px;left:-18px;
-  background:var(--paper);border:1px solid var(--line);
-  padding:12px 16px;border-radius:6px;
-  font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--navy);
-  box-shadow:0 10px 24px rgba(30,51,70,.08);
-}
-
-/* ---------- Marquee ---------- */
-.marquee{
-  background:var(--navy);color:var(--cream);
-  overflow:hidden;white-space:nowrap;padding:16px 0;
-  border-top:1px solid var(--navy-2);border-bottom:1px solid var(--navy-2);
-}
-.marquee-track{
-  display:inline-block;
-  font-family:'IBM Plex Mono',monospace;font-size:13.5px;letter-spacing:.03em;
-  animation: scroll 26s linear infinite;
-}
-.marquee-track span{margin:0 22px;color:var(--powder);}
-@keyframes scroll{
-  0%{transform:translateX(0);}
-  100%{transform:translateX(-50%);}
-}
-@media (prefers-reduced-motion: reduce){
-  .marquee-track{animation:none;}
-}
-
-/* ---------- Intro ---------- */
-.intro{
-  display:flex;gap:60px;
-  padding:88px 0;align-items:center;
-}
-.intro img{flex:.8;}
-.intro > div{flex:1.2;}
-.intro img{border-radius:6px;height:420px;object-fit:cover;object-position:top;}
-.intro h2{font-size:30px;line-height:1.22;margin-bottom:22px;}
-.intro p{font-size:16.5px;color:var(--ink-soft);max-width:56ch;}
-.intro p + p{margin-top:16px;}
-
-/* ---------- What I bring ---------- */
-.bring{padding:20px 0 88px;}
-.bring > .sec-head{margin-bottom:36px;}
-.sec-head h2{font-size:28px;}
-.bring-grid{
-  display:flex;gap:22px;
-}
-.bring-grid .bring-card{flex:1;}
-.bring-card{
-  background:var(--powder);border-radius:6px;padding:30px 26px;
-}
-.bring-card h3{font-size:18px;margin-bottom:10px;}
-.bring-card p{font-size:14.5px;color:var(--ink-soft);margin:0;}
-
-/* ---------- Quote ---------- */
-.quote-band{
-  background:var(--navy);padding:64px 0;margin:0;
-  text-align:center;position:relative;
-}
-.quote-band .wrap{max-width:760px;}
-.quote-band .quote-mark{
-  display:block;font-family:'Fraunces',serif;font-size:64px;line-height:1;
-  color:var(--blue);opacity:.7;margin-bottom:4px;
-}
-.quote-band blockquote{
-  margin:0;font-family:'Fraunces',serif;font-style:italic;font-weight:500;
-  font-size:30px;line-height:1.45;color:var(--cream);
-}
-@media (max-width:600px){
-  .quote-band blockquote{font-size:22px;}
-}
-
-/* ---------- Skills ---------- */
-.skills{padding:20px 0 88px;}
-.skill-tags{display:flex;flex-wrap:wrap;gap:12px;}
-.skill-tags span{
-  font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--navy);
-  background:var(--paper);border:1px solid var(--line);
-  padding:9px 16px;border-radius:999px;
-}
-
-/* ---------- Experience ---------- */
-.exp{padding:20px 0 88px;}
-.exp-item{
-  display:flex;justify-content:space-between;gap:20px;
-  padding:22px 0;border-top:1px solid var(--line);
-}
-.exp-item > div:first-child{flex:1;}
-.exp-item:last-of-type{border-bottom:1px solid var(--line);}
-.exp-role{font-weight:600;color:var(--navy);font-size:16.5px;}
-.exp-org{color:var(--blue-deep);font-style:italic;}
-.exp-desc{margin-top:8px;color:var(--ink-soft);font-size:14.5px;max-width:64ch;}
-.exp-date{
-  font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-soft);
-  white-space:nowrap;padding-top:3px;
-}
-.exp-more{margin-top:28px;}
-
-/* ---------- Certifications ---------- */
-.certs{padding:20px 0 88px;}
-.cert-row{
-  display:flex;gap:16px;flex-wrap:wrap;
-}
-.cert-row .cert-card{flex:1;min-width:200px;}
-.cert-card{
-  border:1px solid var(--line);border-radius:6px;padding:20px 18px;background:var(--paper);
-}
-.cert-card .cert-name{font-weight:600;color:var(--navy);font-size:14.5px;}
-.cert-card .cert-issuer{
-  font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--blue-deep);
-  margin-bottom:8px;display:block;
-}
-
-/* ---------- Projects grid (projects.html) ---------- */
-.proj-head{padding:56px 0 40px;}
-.proj-head h1{font-size:42px;}
-.proj-head p{color:var(--ink-soft);max-width:56ch;margin-top:14px;font-size:16.5px;}
-.proj-grid{
-  display:flex;flex-wrap:wrap;gap:24px;
-  padding-bottom:100px;
-}
-.proj-grid .proj-card{flex:1 1 calc(50% - 12px);min-width:280px;}
-.proj-card{
-  background:var(--paper);border:1px solid var(--line);border-radius:6px;
-  padding:30px 28px;display:flex;flex-direction:column;
-}
-.proj-card .proj-tag{
-  font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--blue-deep);
-  margin-bottom:12px;
-}
-.proj-card h3{font-size:19px;margin-bottom:12px;}
-.proj-card p{color:var(--ink-soft);font-size:14.5px;margin:0 0 20px;flex-grow:1;}
-.proj-card .btn{align-self:flex-start;}
-.proj-card.pending{opacity:.55;}
-.proj-card.pending .btn{pointer-events:none;}
-
-.proj-toggle{align-self:flex-start;}
-.proj-toggle[aria-expanded="true"]::after{content:" ↑";}
-.proj-toggle[aria-expanded="false"]::after{content:" ↓";}
-.proj-detail{
-  margin-top:18px;padding-top:18px;border-top:1px solid var(--line);
-}
-.proj-detail p{font-size:14px;color:var(--ink-soft);margin:0 0 12px;}
-.proj-detail .btn{margin-top:6px;}
-
-/* ---------- Detail pages (GHRM, Competency Multiverse) ---------- */
-.proj-head a{font-size:13.5px;color:var(--blue-deep);text-decoration:none;}
-.detail-page{padding-bottom:80px;max-width:760px;}
-.detail-page h2{font-size:22px;margin:44px 0 14px;}
-.detail-page h2:first-child{margin-top:0;}
-.detail-page p{font-size:15.5px;color:var(--ink-soft);margin:0 0 14px;}
-.detail-page ul{margin:0 0 14px;padding-left:20px;}
-.detail-page li{font-size:15.5px;color:var(--ink-soft);margin-bottom:8px;}
-.detail-page li strong{color:var(--navy);}
-
-.scorecard{
-  background:var(--paper);border:1px solid var(--line);border-radius:6px;
-  padding:22px 26px;margin:8px 0 32px;max-width:420px;
-}
-.scorecard-title{
-  font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--blue-deep);
-  margin-bottom:14px;text-transform:uppercase;letter-spacing:.03em;
-}
-.score-row{
-  display:flex;justify-content:space-between;font-size:14.5px;
-  padding:8px 0;border-top:1px solid var(--line);color:var(--ink-soft);
-}
-.score-row:first-of-type{border-top:none;}
-.score-total{
-  font-weight:600;color:var(--navy);border-top:1px solid var(--navy);margin-top:4px;
-}
-
-/* ---------- Footer ---------- */
-footer{background:var(--navy);color:var(--cream);padding:64px 0 40px;margin-top:40px;}
-footer h2{color:var(--cream);font-size:26px;}
-.footer-links{
-  display:flex;gap:28px;margin-top:26px;flex-wrap:wrap;
-}
-.footer-links a{color:var(--powder);font-size:14.5px;text-decoration:none;margin-right:28px;}
-.footer-links a:hover{color:var(--cream);text-decoration:underline;}
-.footer-bottom{
-  margin-top:52px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14);
-  font-size:12.5px;color:rgba(255,255,255,.55);
-  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
-}
-
-/* ---------- Responsive ---------- */
-@media (max-width: 860px){
-  .hero{flex-direction:column;gap:40px;}
-  .hero h1{font-size:40px;}
-  .hero-photo img{height:340px;}
-  .intro{flex-direction:column;gap:30px;}
-  .intro img{height:300px;}
-  .bring-grid{flex-direction:column;}
-  .cert-row .cert-card{min-width:150px;}
-  .proj-grid .proj-card{flex:1 1 100%;}
-  .exp-item{flex-direction:column;gap:6px;}
-
-  .nav-toggle{display:flex;}
-  .topnav nav{
-    display:none;
-    position:absolute;left:0;right:0;top:100%;
-    background:var(--paper);border-top:1px solid var(--line);
-    flex-direction:column;padding:8px 32px 18px;
+(function () {
+  // Splash screen (home page only) — fade out once the page is ready.
+  var splash = document.getElementById('splash');
+  if (splash) {
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        splash.classList.add('hide');
+      }, 350);
+    });
+    // Safety net: if 'load' already fired before this script ran, or
+    // takes unusually long, don't leave the splash stuck on screen.
+    setTimeout(function () { splash.classList.add('hide'); }, 2000);
   }
-  .topnav nav.open{display:flex;}
-  .topnav nav a{margin-left:0;padding:12px 0;border-bottom:1px solid var(--line);}
-  .topnav{position:relative;}
-}
+})();
+
+(function () {
+  var toggle = document.getElementById('navToggle');
+  var nav = document.getElementById('primaryNav');
+  if (!toggle || !nav) return;
+
+  function closeNav() {
+    nav.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open menu');
+  }
+
+  function openNav() {
+    nav.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Close menu');
+  }
+
+  toggle.addEventListener('click', function () {
+    var isOpen = nav.classList.contains('open');
+    if (isOpen) {
+      closeNav();
+    } else {
+      openNav();
+    }
+  });
+
+  // Close the menu after tapping a link, so it doesn't stay open
+  // when the page navigates or jumps to #contact.
+  nav.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', closeNav);
+  });
+
+  // Collapse back to the desktop layout if the window is resized
+  // past the mobile breakpoint while the menu is open.
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 860) closeNav();
+  });
+})();
