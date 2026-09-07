@@ -222,8 +222,9 @@ img{max-width:100%;display:block;}
 }
 .quote-band .wrap{max-width:760px;}
 .quote-band .quote-mark{
-  display:block;font-family:'Fraunces',serif;font-size:64px;line-height:1;
-  color:var(--blue);opacity:.7;margin-bottom:4px;
+  display:block;font-family:'Fraunces',serif;font-weight:600;
+  font-size:88px;line-height:.5;
+  color:var(--blue);opacity:.85;margin-bottom:18px;
 }
 .quote-band blockquote{
   margin:0;font-family:'Fraunces',serif;font-style:italic;font-weight:500;
