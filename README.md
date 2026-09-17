@@ -1,20 +1,17 @@
-# Angela Horo — HR Portfolio
+# Angela Horo — Portfolio
 
-Plain HTML/CSS site, ready for GitHub Pages.
+A static HTML/CSS site for GitHub Pages.
 
-## Files
-- `index.html` — home page (single scroll)
-- `projects.html` — projects/case-studies page
-- `ncwa-dashboard.html` — your existing NCWA dashboard, linked from Projects
-- `style.css` — shared stylesheet
-- `assets/` — photos + resume PDF
+## Pages
+- `index.html` — overview
+- `projects.html` — selected work
+- `competency-multiverse.html` — assessment-centre brief
+- `ghrm.html` — Green HRM research brief
+- `style.css` / `script.js` — shared system
 
-## How to publish on GitHub Pages
-1. Create a new GitHub repo (e.g. `angela-horo-portfolio`).
-2. Upload all these files/folders, keeping the same structure (don't put them in a subfolder).
-3. Go to repo **Settings → Pages → Source**, select the `main` branch and `/ (root)`, save.
-4. Your site will be live at `https://<your-username>.github.io/<repo-name>/`.
+## Publish
+1. Push to GitHub.
+2. Settings → Pages → source: `main`, `/ (root)`.
+3. Site: `https://<username>.github.io/<repo>/`.
 
-## To update later
-- Swap `assets/Angela_Horo_Resume.pdf` any time you update your resume — filename must stay the same, or update the links in `index.html` and `projects.html`.
-- To add the Cube project, edit the "Coming soon" card in `projects.html`.
+Keep `Angela_Horo_Resume.pdf` in the repo root if the CV download should work.
