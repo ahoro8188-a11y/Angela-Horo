@@ -1,5 +1,32 @@
 // Angela Horo — portfolio
-// Mobile navigation and progressive scroll reveal.
+// Splash, mobile navigation, and progressive scroll reveal.
+
+(function () {
+  var splash = document.getElementById('splash');
+  if (!splash) return;
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hidden = false;
+
+  function hide() {
+    if (hidden) return;
+    hidden = true;
+    splash.classList.add('hide');
+    document.body.classList.remove('await-intro');
+    document.body.classList.add('intro-done');
+  }
+
+  if (reduce) {
+    hide();
+    return;
+  }
+
+  document.body.classList.add('await-intro');
+  window.addEventListener('load', function () {
+    setTimeout(hide, 2200);
+  });
+  setTimeout(hide, 3600);
+})();
 
 (function () {
   var toggle = document.getElementById('navToggle');
